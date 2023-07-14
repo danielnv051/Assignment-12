@@ -4,5 +4,7 @@
 
 | File name | Description |
 |--- | --- |
-|Media.py | Manage media  |
+|Media.py | contain media class, show info and download functions  |
+|main.py | main file  |
+|database.txt | contain movie detail  |
 
