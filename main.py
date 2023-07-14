@@ -18,7 +18,7 @@ class Database:
                 detail[3],
                 detail[4],
                 detail[5],
-                detail[5],
+                detail[6],
             )
             MEDIA.append(my_obj)
         data.close()
@@ -28,7 +28,6 @@ class Database:
         for obj in MEDIA:
             result = f"{obj.type},{obj.name},{obj.director},{obj.imdb_score},{obj.url},{obj.duration},{obj.casts}"
             data.write(result)
-
 
 class Store:
 
@@ -56,32 +55,35 @@ class Store:
         MEDIA.append(new_media)
         print("New media add to list successfully")
 
-    def edit(old_name, new_name):
+    def edit(self, old_name, new_name):
         for obj in MEDIA:
             if obj.name == old_name:
                 obj.name = new_name
+                print('Media edited successfully') 
+                break   
+        else:
+            print('Media Not found...!')    
 
-    def remove(media_name):
+
+    def remove(self, media_name):
         i = 0
         for obj in MEDIA:
             if obj.name == media_name:
-                obj.pop(i)
+                MEDIA.pop(i)
                 print("Media Remove successfully")
+                break
             else:
                 i += 1
         else:
             print("Media not found...!")
 
-    def search(media_name):
+    def search(self, media_name):
         for obj in MEDIA:
-            if (
-                obj.name == media_name
-                or obj.director == media_name
-                or obj.casts in obj.casts
-            ):
+            if media_name in obj.name:
                 print(
                     f"type: {obj.type}\nname: {obj.name}\nDirector: {obj.director}\nImdb_score: {obj.imdb_score}\nUrl: {obj.url}\nDuration: {obj.duration}\ncasts: {obj.casts}\n=======================\n"
                 )
+                break
         else:
             print("Media not found...!")
 
@@ -131,7 +133,7 @@ while True:
             Media.show_info(media_name)
 
         case 7:
-            media_name = input("Enter movie name you want to download")
+            media_name = input("Enter movie name you want to download: ")
             Media.download(media_name)
 
         case 8:

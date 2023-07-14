@@ -1,7 +1,7 @@
 from pytube import YouTube
+from actor import *
 
 MEDIA = []
-
 
 class Media:
     def __init__(self, type, name, director, imdb_score, url, duration, casts):
@@ -16,10 +16,11 @@ class Media:
     @staticmethod
     def show_info(media_name):
         for obj in MEDIA:
-            if obj.name == media_name:
+            if media_name in obj.name:
                 print(
                     f"type: {obj.type}\nname: {obj.name}\nDirector: {obj.director}\nImdb_score: {obj.imdb_score}\nUrl: {obj.url}\nDuration: {obj.duration}\ncasts: {obj.casts}\n=======================\n"
                 )
+                break
         else:
             print("Media not found...!")
 
